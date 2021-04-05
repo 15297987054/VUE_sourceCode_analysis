@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 转换数组形式[1,2,3,[4,5]] 要变为对象
+        // {
+        //     children:[
+        //         {value:1},
+        //         {value:2},
+        //         {value:3},
+        //         {children:[
+        //             {value:4},
+        //             {value:5}
+        //         ]}
+        //     ]
+        // }
+        
+        let arr = [1,2,3,[4,5,[6,7,[8]]],9]
+        // 方法一
+        // let tempArr = []
+        // for(let i=0;i<arr.length;i++){
+        //     tempArr.push(getValue(arr[i]))
+        // }
+        // function getValue(item){
+        //     if(Array.isArray(item)){
+        //         let obj = {
+        //             children:[]
+        //         }
+        //         for(let j=0;j<item.length;j++){
+        //             if(Array.isArray(item[j])){
+        //                 obj.children.push(getValue(item[j]))
+        //             }else {
+        //                 obj.children.push({value:item[j]})
+        //             }
+        //         }
+        //         return obj
+        //     }else {
+        //         return {value:item}
+        //     }
+        // }
+        // console.log({children:tempArr},'arr');
+
+        // 方法二
+        function convert(item){
+            if(typeof item == 'number'){
+                return {value:item}
+            }else if(Array.isArray(item)){
+                return {
+                    children:item.map(_item=>convert(_item))
+                }
+            }
+        }
+        let o = convert(arr)
+        console.log(o,'0oooo');
+    </script>
+</body>
+</html>

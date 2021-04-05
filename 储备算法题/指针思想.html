@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 寻找字符串中，连续重复次数最多的字符
+        var str = 'aaaaaaaaaaabbbbbbbbbcccccccddddddd'
+        // 指针
+        var i = 0;
+        var j = 1;
+        // 重复最多的字符串
+        var maxStr = ''
+        // 当前重复最多的次数
+        var maxCount = 0
+        // 当i还在范围内的时候，应该继续寻找
+        while(i <= str.length-1){
+            if(str[i]!=str[j]){
+                console.log(str[i] + '重复次数' + (j-i));
+                if(j-i > maxCount){
+                    maxCount = j-i
+                    maxStr = str[i]
+                }
+                i = j
+            }
+            j++
+        }
+        console.log(maxStr + '重复' + maxCount + '次');
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container"></div>
+    <script src="/xuni/bundle.js"></script>
+    <script>
+        // 模板字符串
+        var templateStr = `
+            <div>
+                <ul>
+                    {{#students}}
+                    <li class="abs">
+                        学生{{name}}的爱好是
+                        <ol>
+                            {{#hobbies}}
+                            <li>{{.}}</li>
+                            {{/hobbies}}    
+                        </ol>    
+                    </li>
+                    {{/students}}
+                </ul>
+            </div>`
+        // 数据
+        var data = {
+            students:[
+                {name:'小明',hobbies:['游泳','健身']},
+                {name:'小红',hobbies:['足球','篮球','羽毛球']},
+                {name:'小强',hobbies:['吃饭','睡觉']},
+            ]
+        }
+        // var templateStr = '我爱{{somebody}}，{{somebody}}也爱我，我好{{mood}}啊，我考了{{a.b.c}}分'
+        // var data = {
+        //     somebody:'李晓红',
+        //     mood:'开心',
+        //     a:{
+        //         b:{
+        //             c:100
+        //         }
+        //     }
+        // }
+        var domstr = SSG_Template_Engine.render(templateStr,data)
+        var container = document.getElementById('container')
+        container.innerHTML = domstr
+        console.log(domstr);
+    </script>
+</body>
+</html>

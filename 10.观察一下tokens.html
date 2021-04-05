@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="./jslib/mustache.js"></script>
+    <script>
+        var templateStr = `
+            <ul>
+                {{#arr}}
+                    <li>
+                        <div class="hd">{{name}}</div>
+                        <div class="bd">
+                            <p>姓名：{{name}}</p>
+                            <p>年龄：{{age}}</p>
+                            <p>性别：{{sex}}</p>
+                        </div>
+                    </li>
+                {{/arr}}    
+            </ul>
+       `
+       Mustache.render(templateStr,{})
+
+       var templateStr1 = `
+            <ul>
+                {{#arr}}
+                    <li>{{name}}的爱好是：
+                        <ol>
+                            {{#hobbies}}
+                                <li>{{.}}</li>
+                            {{/hobbies}}
+                        </ol>
+                    </li>
+                {{/arr}}
+            </ul>
+           `
+        Mustache.render(templateStr1,{})
+    </script>
+</body>
+</html>

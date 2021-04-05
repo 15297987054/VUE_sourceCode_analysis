@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 试输出斐波那契数列的前10项，即1、1、2、3、5、8、13、21、34、55
+        // 缓存对象
+        var cache = {}
+
+        // 创建一个函数，功能是返回下标为n的这项数字
+        function b(n){
+            // 判断缓存对象中有没有这个值，如果有，直接用
+            if(n in cache){
+                console.log('命中缓存，不用重复计算了');
+                return cache[n]
+            }
+            // 缓存对象中没有这个值
+            var v = n==0 || n==1 ?1:b(n-1) + b(n-2)
+            // 写入缓存,也就是说，每算一个值，都要把值存入缓存对象
+            cache[n] = v
+            return v
+        }
+        
+        for(let i= 0;i<=9;i++){
+            b(i)
+        }
+    </script>
+</body>
+</html>

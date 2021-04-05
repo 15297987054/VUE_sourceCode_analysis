@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container"></div>
+    <script src="./jslib/mustache.js"></script>
+    <script type="text/template" id="mytemplate">
+        <ul>
+            {{#arr}}
+                <li>
+                    <div class="hd">{{name}}</div>
+                    <div class="bd">
+                        <p>姓名：{{name}}</p>
+                        <p>年龄：{{age}}</p>
+                        <p>性别：{{sex}}</p>
+                    </div>
+                </li>
+            {{/arr}}    
+        </ul>
+    </script>
+    <script>
+        /*
+            mustache是最早的模板引擎库，比vue的诞生要早的多。
+            嵌入标记：{{}}，因为像胡子，因此得名
+        */
+
+       // 循环简单数组
+        //    var data = {
+        //        arr:[1,2,4,5]
+        //    }
+        //    var templateStr = `
+        //     <ul>
+        //         {{#arr}}
+        //             <li>{{.}}</li>
+        //         {{/arr}}
+        //     </ul>
+        //    `
+
+    // 循环复杂数组
+        var data = {
+            arr:[
+                {name:'小明',age:12,sex:'男'},
+                {name:'小红',age:12,sex:'男'},
+                {name:'小丽',age:12,sex:'男'},
+            ]
+        }
+        // 为了方便模板字符串的编写，也可以将模板字符串放到一个type不为'text/javascript'的script的标签中
+        var templateStr = document.getElementById('mytemplate').innerHTML
+    //    var templateStr = `
+    //         <ul>
+    //             {{#arr}}
+    //                 <li>
+    //                     <div class="hd">{{name}}</div>
+    //                     <div class="bd">
+    //                         <p>姓名：{{name}}</p>
+    //                         <p>年龄：{{age}}</p>
+    //                         <p>性别：{{sex}}</p>
+    //                     </div>
+    //                 </li>
+    //             {{/arr}}    
+    //         </ul>
+    //    `
+       const str = Mustache.render(templateStr,data)
+       var dom = document.getElementById('container')
+       dom.innerHTML = str
+       console.log(str);
+    </script>
+</body>
+</html>
